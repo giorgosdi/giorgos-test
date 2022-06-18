@@ -19,6 +19,15 @@ spec:
         name: test
         ports:
         - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: database-configs
+        env:
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql
+              key: postgres-password
         # this is necessary for autoscaling
         resources:
           requests:
@@ -28,3 +37,15 @@ spec:
             cpu: 200m
             memory: 200Mi
 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-configs
+  namespace: test
+data:
+  PORT: "8080"
+  POSTGRESQL_HOST: postgresql.test.svc.cluster.local
+  POSTGRESQL_PORT: "5432"
+  POSTGRESQL_DBNAME: postgres
+  POSTGRESQL_USER: postgres
