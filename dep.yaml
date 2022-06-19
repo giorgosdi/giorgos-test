@@ -25,13 +25,6 @@ spec:
         envFrom:
         - configMapRef:
             name: database-configs
-        env:
-        - name: POSTGRESQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgresql
-              key: postgres-password
-        # this is necessary for autoscaling
         resources:
           requests:
             cpu: 100m
