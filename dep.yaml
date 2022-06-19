@@ -5,6 +5,9 @@ metadata:
   namespace: test
 spec:
   replicas: 3
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 100%
   selector:
     matchLabels:
       app: test
@@ -45,7 +48,7 @@ metadata:
   namespace: test
 data:
   PORT: "8080"
-  POSTGRESQL_HOST: postgresql.test.svc.cluster.local
+  POSTGRESQL_HOST: "giorgos-infra-master.cvv5huvqatav.eu-west-2.rds.amazonaws.com"
   POSTGRESQL_PORT: "5432"
   POSTGRESQL_DBNAME: replicaPostgresql
   POSTGRESQL_USER: replica_postgresql
