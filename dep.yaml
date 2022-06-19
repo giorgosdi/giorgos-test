@@ -27,6 +27,29 @@ spec:
         envFrom:
         - configMapRef:
             name: database-configs
+        env:
+          - name: POSTGRESQL_USER:
+            valueFrom:
+              secretRef:
+                name: dbusername
+                value: username
+          - name: POSTGRESQL_DBNAME:
+            valueFrom:
+              secretRef:
+                name: dbname
+                value: name
+          - name: POSTGRESQL_HOST:
+            valueFrom:
+              secretRef:
+                name: dbendpoint
+                value: endpoint
+          - name: POSTGRESQL_PASSWORD:
+            valueFrom:
+              secretRef:
+                name: dbpass
+                value: pass
+          - name: POSTGRESQL_PORT:
+            value: "5432"
         resources:
           requests:
             cpu: 100m
@@ -34,21 +57,6 @@ spec:
           limits:
             cpu: 200m
             memory: 200Mi
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: database-configs
-  namespace: test
-data:
-  PORT: "8080"
-  POSTGRESQL_HOST: "giorgos-infra-master.cvv5huvqatav.eu-west-2.rds.amazonaws.com"
-  POSTGRESQL_PORT: "5432"
-  POSTGRESQL_DBNAME: replicaPostgresql
-  POSTGRESQL_USER: replica_postgresql
-  POSTGRESQL_PASSWORD: "kldN02vpsieOuLoZ"
-
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -75,3 +83,101 @@ spec:
   selector:
     matchLabels:
       app: test
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: eso-svcacc
+spec:
+  provider:
+    aws:
+      service: ParameterStore
+      region: eu-west-2
+      auth:
+        jwt:
+          serviceAccountRef:
+            name: eso
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: "dbusername"
+
+spec:
+  refreshInternal: 15s
+  secretStoreRef:
+    name: eso-svcacc
+    kind: SecretStore
+  target:
+    name: dbusername
+    creationPolicy: Owner
+    template:
+      type: opaque
+      data:
+        - secretKey: username
+          remoteRef:
+            key: /giorgos/postgres/database/username
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: "dbpass"
+
+spec:
+  refreshInternal: 15s
+  secretStoreRef:
+    name: eso-svcacc
+    kind: SecretStore
+  target:
+    name: dbpass
+    creationPolicy: Owner
+    template:
+      type: opaque
+      data:
+        - secretKey: pass
+          remoteRef:
+            key: /giorgos/postgres/database/master_password
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: "dbname"
+
+spec:
+  refreshInternal: 15s
+  secretStoreRef:
+    name: eso-svcacc
+    kind: SecretStore
+  target:
+    name: dbname
+    creationPolicy: Owner
+    template:
+      type: opaque
+      data:
+        - secretKey: name
+          remoteRef:
+            key: /giorgos/postgres/database/name
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: "dbendpoint"
+spec:
+  refreshInternal: 15s
+  secretStoreRef:
+    name: eso-svcacc
+    kind: SecretStore
+  target:
+    name: dbendpoint
+    creationPolicy: Owner
+    template:
+      type: opaque
+      data:
+        - secretKey: endpoint
+          remoteRef:
+            key: /giorgos/postgres/database/endpoint
+
