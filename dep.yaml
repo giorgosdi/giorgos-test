@@ -111,7 +111,7 @@ metadata:
   namespace: external-secrets
 
 spec:
-  refreshInternal: 15s
+  refreshInterval: 15s
   secretStoreRef:
     name: eso-svcacc
     kind: SecretStore
@@ -133,7 +133,7 @@ metadata:
   namespace: external-secrets
 
 spec:
-  refreshInternal: 15s
+  refreshInterval: 15s
   secretStoreRef:
     name: eso-svcacc
     kind: SecretStore
@@ -155,7 +155,7 @@ metadata:
   namespace: external-secrets
 
 spec:
-  refreshInternal: 15s
+  refreshInterval: 15s
   secretStoreRef:
     name: eso-svcacc
     kind: SecretStore
@@ -176,7 +176,7 @@ metadata:
   name: "dbendpoint"
   namespace: external-secrets
 spec:
-  refreshInternal: 15s
+  refreshInterval: 15s
   secretStoreRef:
     name: eso-svcacc
     kind: SecretStore
