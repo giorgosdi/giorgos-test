@@ -90,7 +90,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: SecretStore
 metadata:
   name: eso-svcacc
-  namespace: external-secrets
+  namespace: test
 spec:
   provider:
     aws:
@@ -105,7 +105,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: "dbusername"
-  namespace: external-secrets
+  namespace: test
 
 spec:
   refreshInterval: 15s
@@ -127,7 +127,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: "dbpass"
-  namespace: external-secrets
+  namespace: test
 
 spec:
   refreshInterval: 15s
@@ -149,7 +149,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: "dbname"
-  namespace: external-secrets
+  namespace: test
 
 spec:
   refreshInterval: 15s
@@ -171,7 +171,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: "dbendpoint"
-  namespace: external-secrets
+  namespace: test
 spec:
   refreshInterval: 15s
   secretStoreRef:
