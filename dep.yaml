@@ -18,6 +18,26 @@ spec:
       labels:
         app: test
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - test
+              topologyKey: topology.kubernetes.io/zone
+            weight: 50
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - test
+            topologyKey: kubernetes.io/hostname
       containers:
       - image: ghcr.io/giorgosdi/test:latest
         imagePullPolicy: IfNotPresent
@@ -69,7 +89,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: test
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 70
 
