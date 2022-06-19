@@ -17,8 +17,8 @@ spec:
         app: test
     spec:
       containers:
-      - image: ghcr.io/giorgosdi/test:latest
-        imagePullPolicy: Always
+      - image: ghcr.io/giorgosdi/test:v0.1
+        imagePullPolicy: IfNotPresent
         name: test
         ports:
         - containerPort: 8080
