@@ -28,28 +28,28 @@ spec:
         - configMapRef:
             name: database-configs
         env:
-          - name: POSTGRESQL_USER:
-            valueFrom:
-              secretRef:
-                name: dbusername
-                value: username
-          - name: POSTGRESQL_DBNAME:
-            valueFrom:
-              secretRef:
-                name: dbname
-                value: name
-          - name: POSTGRESQL_HOST:
-            valueFrom:
-              secretRef:
-                name: dbendpoint
-                value: endpoint
-          - name: POSTGRESQL_PASSWORD:
-            valueFrom:
-              secretRef:
-                name: dbpass
-                value: pass
-          - name: POSTGRESQL_PORT:
-            value: "5432"
+        - name: POSTGRESQL_USER
+          valueFrom:
+            secretRef:
+              name: dbusername
+              value: username
+        - name: POSTGRESQL_DBNAME
+          valueFrom:
+            secretRef:
+              name: dbname
+              value: name
+        - name: POSTGRESQL_HOST
+          valueFrom:
+            secretRef:
+              name: dbendpoint
+              value: endpoint
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretRef:
+              name: dbpass
+              value: pass
+        - name: POSTGRESQL_PORT
+          value: "5432"
         resources:
           requests:
             cpu: 100m
