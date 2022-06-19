@@ -47,5 +47,6 @@ data:
   PORT: "8080"
   POSTGRESQL_HOST: postgresql.test.svc.cluster.local
   POSTGRESQL_PORT: "5432"
-  POSTGRESQL_DBNAME: postgres
-  POSTGRESQL_USER: postgres
+  POSTGRESQL_DBNAME: replicaPostgresql
+  POSTGRESQL_USER: replica_postgresql
+  POSTGRESQL_PASSWORD: 12345
