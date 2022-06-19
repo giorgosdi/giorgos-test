@@ -30,22 +30,22 @@ spec:
         env:
         - name: POSTGRESQL_USER
           valueFrom:
-            secretRef:
+            secretKeyRef:
               name: dbusername
               value: username
         - name: POSTGRESQL_DBNAME
           valueFrom:
-            secretRef:
+            secretKeyRef:
               name: dbname
               value: name
         - name: POSTGRESQL_HOST
           valueFrom:
-            secretRef:
+            secretKeyRef:
               name: dbendpoint
               value: endpoint
         - name: POSTGRESQL_PASSWORD
           valueFrom:
-            secretRef:
+            secretKeyRef:
               name: dbpass
               value: pass
         - name: POSTGRESQL_PORT
