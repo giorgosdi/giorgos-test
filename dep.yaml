@@ -121,9 +121,9 @@ spec:
     template:
       type: opaque
       data:
-        - secretKey: username
-          remoteRef:
-            key: /giorgos/postgres/database/username
+      - secretKey: username
+        remoteRef:
+          key: /giorgos/postgres/database/username
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -143,9 +143,9 @@ spec:
     template:
       type: opaque
       data:
-        - secretKey: pass
-          remoteRef:
-            key: /giorgos/postgres/database/master_password
+      - secretKey: pass
+        remoteRef:
+          key: /giorgos/postgres/database/master_password
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -165,9 +165,9 @@ spec:
     template:
       type: opaque
       data:
-        - secretKey: name
-          remoteRef:
-            key: /giorgos/postgres/database/name
+      - secretKey: name
+        remoteRef:
+          key: /giorgos/postgres/database/name
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -186,7 +186,7 @@ spec:
     template:
       type: opaque
       data:
-        - secretKey: endpoint
-          remoteRef:
-            key: /giorgos/postgres/database/endpoint
+      - secretKey: endpoint
+        remoteRef:
+          key: /giorgos/postgres/database/endpoint
 
