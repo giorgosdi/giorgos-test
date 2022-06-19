@@ -53,8 +53,8 @@ data:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: test-app
-  namespace: test-app
+  name: test
+  namespace: test
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -69,6 +69,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: test-pdb
+  namespace: test
 spec:
   maxUnavailable: 1
   selector:
