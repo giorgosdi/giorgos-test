@@ -32,21 +32,25 @@ spec:
           valueFrom:
             secretKeyRef:
               name: dbusername
+              key: username
               value: username
         - name: POSTGRESQL_DBNAME
           valueFrom:
             secretKeyRef:
               name: dbname
+              key: name
               value: name
         - name: POSTGRESQL_HOST
           valueFrom:
             secretKeyRef:
               name: dbendpoint
+              key: endpoint
               value: endpoint
         - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: dbpass
+              key: pass
               value: pass
         - name: POSTGRESQL_PORT
           value: "5432"
