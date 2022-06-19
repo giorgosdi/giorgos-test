@@ -24,9 +24,6 @@ spec:
         name: test
         ports:
         - containerPort: 8080
-        envFrom:
-        - configMapRef:
-            name: database-configs
         env:
         - name: POSTGRESQL_USER
           valueFrom:
