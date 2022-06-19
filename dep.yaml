@@ -120,10 +120,10 @@ spec:
     creationPolicy: Owner
     template:
       type: opaque
-      data:
-      - secretKey: username
-        remoteRef:
-          key: /giorgos/postgres/database/username
+  data:
+  - secretKey: username
+    remoteRef:
+      key: /giorgos/postgres/database/username
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -142,10 +142,10 @@ spec:
     creationPolicy: Owner
     template:
       type: opaque
-      data:
-      - secretKey: pass
-        remoteRef:
-          key: /giorgos/postgres/database/master_password
+  data:
+  - secretKey: pass
+    remoteRef:
+      key: /giorgos/postgres/database/master_password
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -164,10 +164,10 @@ spec:
     creationPolicy: Owner
     template:
       type: opaque
-      data:
-      - secretKey: name
-        remoteRef:
-          key: /giorgos/postgres/database/name
+  data:
+  - secretKey: name
+    remoteRef:
+      key: /giorgos/postgres/database/name
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -185,8 +185,7 @@ spec:
     creationPolicy: Owner
     template:
       type: opaque
-      data:
-      - secretKey: endpoint
-        remoteRef:
-          key: /giorgos/postgres/database/endpoint
-
+  data:
+  - secretKey: endpoint
+    remoteRef:
+      key: /giorgos/postgres/database/endpoint
