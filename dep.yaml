@@ -206,3 +206,41 @@ spec:
   - secretKey: endpoint
     remoteRef:
       key: /giorgos/postgres/database/endpoint
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: giorgos-test-service
+  namespace: test
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: test
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: giorgos-test-ingress
+  namespace: test
+  annotations:
+    kubernetes.io/ingress.class: "alb"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    external-dns.alpha.kubernetes.io/hostname: test.giorgos.com
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
+
