@@ -43,7 +43,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: test
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: POSTGRESQL_USER
           valueFrom:
@@ -242,5 +242,5 @@ spec:
           service:
             name: giorgos-test-service
             port:
-              number: 80
+              number: 8080
 
