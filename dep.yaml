@@ -43,7 +43,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: test
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         env:
         - name: POSTGRESQL_USER
           valueFrom:
@@ -215,7 +215,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
     protocol: TCP
   type: NodePort
   selector:
