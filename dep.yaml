@@ -240,7 +240,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: test
+            name: giorgos-test-service
             port:
               number: 80
 
